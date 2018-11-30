@@ -99,6 +99,7 @@ int firstFit(int binCapacity, vector<int> caseItems){
     }
     if (!placed){
       bins.push_back(newBin(binCapacity));
+      bins.back().weight += item;
       bins.back().items.push_back(item);
     }
   }
