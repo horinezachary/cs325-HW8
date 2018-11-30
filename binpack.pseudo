@@ -1,0 +1,58 @@
+int firstFit(binSize, Items){
+  bins[];
+  bins.add(new bin());
+
+  for (all Items){
+    while(!placed,for all bins){
+      if (weight <= bin.extraSpace){
+        bins[j].add(item[i]);
+        placed = true;
+      }
+    }
+    if (!placed){
+      bins.add(new bin());
+      bins.last.add(item[i]);
+    }
+  }
+  return bins.size();
+}
+
+//sorted using insertion sort
+int firstFitDecreasing(binSize, items){
+  int i = items.size();
+  while (i > 0){
+    int j = i;
+    while (j < items.size() && items[j-1] < items[j]){
+      items[j-1] = items[j];
+      items[j] = temp;
+      j++;
+    }
+    i--;
+  }
+  return firstFit(binCapacity, caseItems);
+}
+
+int bestFit(int binCapacity, vector<int> caseItems){
+  bins[];
+  bins.add(new bin());
+  for (all Items){
+    int minBin;
+    int minBinSpace;
+    for (all bins){
+      if (weight <= bin.extraSpace){
+        if (firstItem || bin.extraSpace < minBinSpace){
+          minBinSpace = bin.extraSpace-weight;
+          minBin = item;
+        }
+      }
+    }
+    if (minBinSpace !NULL){
+      bins[minBin].add(item);
+    }
+    else {
+      bins.add(new bin());
+      bin.add(item);
+    }
+  }
+  return bins.size();
+}
