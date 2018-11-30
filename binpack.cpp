@@ -160,6 +160,6 @@ int bestFit(int binCapacity, vector<int> caseItems){
       bins.back().items.push_back(item);
     }
   }
-  printBins(binCapacity,bins);
+  //printBins(binCapacity,bins);
   return bins.size();
 }
