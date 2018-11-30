@@ -12,6 +12,7 @@ void binPack(int caseNumber, int binCapacity, vector<int> caseItems);
 int firstFit(int binCapacity, vector<int> caseItems);
 int firstFitDecreasing(int binCapacity, vector<int> caseItems);
 int bestFit(int binCapacity, vector<int> caseItems);
+void randomCases(int numCases, int minBinSize, int maxBinSize, int minItems, int maxItems, int minItemSize, int maxItemSize);
 
 struct Bin{
   int capacity;
@@ -25,7 +26,6 @@ Bin newBin(int binCapacity){
 }
 
 int main(){
-
   string filename = "bin.txt";
   ifstream inFile;  //set up the file reader and attempt to read the file
   inFile.open(filename);
@@ -51,7 +51,18 @@ int main(){
       parsedRow.push_back(cell);
     }
     if (linecount == 0){  //number of cases
+      if (parsedRow.at(0) == "random"){linecount == 4000;}
       numCases = stoi(parsedRow.at(0));
+    }
+    if (linecount == 4000){
+      randomCases(parsedRow.at(0),
+                  parsedRow.at(1),
+                  parsedRow.at(2),
+                  parsedRow.at(3),
+                  parsedRow.at(4),
+                  parsedRow.at(5),
+                  parsedRow.at(6));
+      return();
     }
     else if (linecount%3 == 1){ //capacity of bins
       currentCaseBinCapacity = stoi(parsedRow.at(0));
@@ -67,6 +78,27 @@ int main(){
       binPack(caseCount, currentCaseBinCapacity, caseItems);
       caseCount++;
     }
+  }
+  //randomCases(20,5,20,4,40,1,30);
+}
+
+void randomCases(int numCases, int minBinSize, int maxBinSize, int minItems, int maxItems, int minItemSize, int maxItemSize){
+  for (int i = 0; i < numCases; i++){
+    int binSize = rand() % (maxBinSize-minBinSize) + minBinSize;
+    int numItems = rand() % (maxItems-minItems) + minItems;
+    vector<int> items;
+    for (int j = 0; j < numItems; j++){
+      if (binSize < maxItemSize){maxItemSize = binSize;}
+      int itemSize = rand() % (maxItemSize-minItemSize) + minItemSize;
+      items.push_back(itemSize);
+    }
+    cout << "Bin Size: " << binSize << endl;
+    cout << numItems << " Items: ";
+    for (int i = 0; i < items.size(); i++){
+      cout << i << " ";
+    }
+    cout << endl;
+    binPack(i, binSize, items);
   }
 }
 
