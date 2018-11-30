@@ -64,3 +64,14 @@ int main(){
     }
   }
 }
+
+void binPack(int binCapacity, Vector<Items> caseItems){
+  int ffBins  = firstFit(binCapacity, caseItems);
+  int ffdBins = firstFitDecreasing(binCapacity, caseItems);
+  int bfBins  = bestFit(binCapacity, caseItems);
+
+  cout << "Test Case " << caseCount
+       << "| First Fit: " << ffdBins
+       << "| First Fit Decreasing: " << ffdBins
+       << "| Best Fit: " << bfBins << endl;
+}
