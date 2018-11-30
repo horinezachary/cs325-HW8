@@ -15,13 +15,12 @@ int bestFit(int binCapacity, vector<int> caseItems);
 
 struct Bin{
   int capacity;
-  int availableCapacity;
+  int weight = 0;
   vector<int> items;
 };
 Bin newBin(int binCapacity){
   Bin temp;
   temp.capacity = binCapacity;
-  temp.availableCapacity = binCapacity;
   return temp;
 }
 
@@ -92,8 +91,8 @@ int firstFit(int binCapacity, vector<int> caseItems){
     bool placed = false;
     int item = caseItems.at(i);
     for (int j = 0; !placed && j < bins.size(); j++){
-      if (item <= bins.at(j).availableCapacity){
-        bins.at(j).availableCapacity -= item;
+      if (item <= bins.at(j).capacity - bins.at(j).weight){
+        bins.at(j).weight += item;
         bins.at(j).items.push_back(item);
         placed = true;
       }
