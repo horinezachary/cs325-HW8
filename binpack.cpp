@@ -105,22 +105,19 @@ int firstFit(int binCapacity, vector<int> caseItems){
   return bins.size();
 }
 
+//sorted using insertion sort
 int firstFitDecreasing(int binCapacity, vector<int> caseItems){
-  int i = 1;
-  while (i < caseItems.size()){  //step through array and sort each value
+  int i = caseItems.size();
+  while (i > 0){  //step through array and sort each value
     int j = i;
-    while (j > 0 && caseItems.at(j-1) > caseItems.at(j)){ //walk through array with one value and move it down into place
+    while (j < caseItems.size() && caseItems.at(j-1) < caseItems.at(j)){ //walk through array with one value and move it down into place
       int temp = caseItems.at(j-1);
       caseItems.at(j-1) = caseItems.at(j);
       caseItems.at(j) = temp;
-      j--;
+      j++;
     }
-    i++;
+    i--;
   }
-  for (int i = 0; i < caseItems.size(); i++){
-    cout << caseItems.at(i) << " ";
-  }
-  cout << endl;
   return firstFit(binCapacity, caseItems);
 }
 
