@@ -7,3 +7,6 @@ In order to run this program, put your data in a file named bin.txt, in the foll
 10            //this format continues for as many cases as you have
 4
 3 8 2 7
+
+After you have entered your data, compile the code with the command g++ -o binpack binpack.cpp
+In order to run the program, run ./binpack
