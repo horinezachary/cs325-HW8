@@ -8,6 +8,11 @@
 
 using namespace std;
 
+void binPack(int binCapacity, Vector<Items> caseItems);
+int firstFit(int binCapacity, Vector<Items> caseItems);
+int firstFitDecreasing(int binCapacity, Vector<Items> caseItems);
+int bestFit(int binCapacity, Vector<Items> caseItems);
+
 struct Bin{
   int capacity;
   int availableCapacity;
