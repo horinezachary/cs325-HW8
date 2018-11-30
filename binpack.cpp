@@ -52,17 +52,20 @@ int main(){
     }
     if (linecount == 0){  //number of cases
       if (parsedRow.at(0) == "random"){linecount == 4000;}
-      numCases = stoi(parsedRow.at(0));
+      else{
+        numCases = stoi(parsedRow.at(0));
+      }
     }
     if (linecount == 4000){
-      randomCases(parsedRow.at(0),
-                  parsedRow.at(1),
-                  parsedRow.at(2),
-                  parsedRow.at(3),
-                  parsedRow.at(4),
-                  parsedRow.at(5),
-                  parsedRow.at(6));
-      return();
+      cout << "random" <<endl;
+      randomCases(stoi(parsedRow.at(0)),
+                  stoi(parsedRow.at(1)),
+                  stoi(parsedRow.at(2)),
+                  stoi(parsedRow.at(3)),
+                  stoi(parsedRow.at(4)),
+                  stoi(parsedRow.at(5)),
+                  stoi(parsedRow.at(6)));
+      exit(0);
     }
     else if (linecount%3 == 1){ //capacity of bins
       currentCaseBinCapacity = stoi(parsedRow.at(0));
