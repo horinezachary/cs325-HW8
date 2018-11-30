@@ -75,3 +75,27 @@ void binPack(int binCapacity, Vector<Items> caseItems){
        << "| First Fit Decreasing: " << ffdBins
        << "| Best Fit: " << bfBins << endl;
 }
+
+
+int firstFit(int binCapacity, Vector<Items> caseItems){
+  Vector<Bins> = bins;
+  bins.push_back(new Bin(binCapacity));
+
+  for (int i = 0; i < caseItems.size(); i++){
+    bool placed = false;
+    for (int j = 0; !placed && j < bins.size(); j++){
+      Item item = caseItems.at(i);
+      if (item.weight <= bins.at(j).availableCapacity){
+        bins.at(j).availableCapacity -= item.weight;
+        bins.at(j).items.push_back(item);
+        placed = true;
+      }
+    }
+    if (!placed){
+      bins.push_back(new Bin(binCapacity));
+      bins.back().items.push_back(item);
+    }
+  }
+  return bins.size();
+}
+}
