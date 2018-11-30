@@ -134,6 +134,32 @@ int firstFitDecreasing(int binCapacity, vector<int> caseItems){
 }
 
 int bestFit(int binCapacity, vector<int> caseItems){
+  vector<Bin> bins;
+  bins.push_back(newBin(binCapacity));
 
-  return 0;
+  for (int i = 0; i < caseItems.size(); i++){
+    int minBin = 0;
+    int minBinSpace = -1;
+
+    int item = caseItems.at(i);
+    for (int j = 0; j < bins.size(); j++){
+      if (item <= bins.at(j).capacity - bins.at(j).weight){
+        if (minBinSpace == -1 || bins.at(j).capacity - bins.at(j).weight < minBinSpace){
+          minBinSpace = bins.at(j).capacity - bins.at(j).weight;
+          minBin = j;
+        }
+      }
+    }
+    if (minBinSpace != -1){
+      bins.at(minBin).weight += item;
+      bins.at(minBin).items.push_back(item);
+    }
+    else {
+      bins.push_back(newBin(binCapacity));
+      bins.back().weight += item;
+      bins.back().items.push_back(item);
+    }
+  }
+  printBins(binCapacity,bins);
+  return bins.size();
 }
