@@ -76,7 +76,7 @@ void binPack(int caseNumber, int binCapacity, vector<int> caseItems){
   int bfBins  = bestFit(binCapacity, caseItems);
 
   cout << "Test Case " << caseNumber
-       << "| First Fit: " << ffdBins
+       << "| First Fit: " << ffBins
        << "| First Fit Decreasing: " << ffdBins
        << "| Best Fit: " << bfBins << endl;
 }
