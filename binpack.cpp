@@ -81,6 +81,17 @@ void binPack(int caseNumber, int binCapacity, vector<int> caseItems){
        << "| Best Fit: " << bfBins << endl;
 }
 
+void printBins(int binCapacity, vector<Bin> bins){
+  cout << "Bin Size: " << binCapacity << endl;
+  for (int i = 0; i < bins.size(); i++){
+    cout << "Bin " << i << ": " << bins.at(i).weight << " | ";
+    for (int j = 0; j < bins.at(i).items.size(); j++){
+      cout << bins.at(i).items.at(j) << " ";
+    }
+    cout << endl;
+  }
+}
+
 
 int firstFit(int binCapacity, vector<int> caseItems){
   vector<Bin> bins;
