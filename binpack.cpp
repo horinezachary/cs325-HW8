@@ -8,20 +8,22 @@
 
 using namespace std;
 
-void binPack(int binCapacity, Vector<Items> caseItems);
-int firstFit(int binCapacity, Vector<Items> caseItems);
-int firstFitDecreasing(int binCapacity, Vector<Items> caseItems);
-int bestFit(int binCapacity, Vector<Items> caseItems);
+void binPack(int caseNumber, int binCapacity, vector<int> caseItems);
+int firstFit(int binCapacity, vector<int> caseItems);
+int firstFitDecreasing(int binCapacity, vector<int> caseItems);
+int bestFit(int binCapacity, vector<int> caseItems);
 
 struct Bin{
   int capacity;
   int availableCapacity;
-  Vector<Item> items;
-  Bin(int cap){capacity = cap; availableCapacity = capacity;}
+  vector<int> items;
 };
-struct Item{
-  int weight;
-};
+Bin newBin(int binCapacity){
+  Bin temp;
+  temp.capacity = binCapacity;
+  temp.availableCapacity = binCapacity;
+  return temp;
+}
 
 int main(){
 
@@ -59,45 +61,45 @@ int main(){
       currentCaseNumItems = stoi(parsedRow.at(0));
     }
     else if (linecount%3 == 0){ //list of items
-      Vector<Items> caseItems;
+      vector<int> caseItems;
       for (int i = 0; i < currentCaseNumItems; i++){
-        Item temp = new Item;
-        temp.weight = stoi(parsedRow.at(i));
-        caseItems.push_back(temp);
+        caseItems.push_back(stoi(parsedRow.at(i)));
       }
-      binPack(currentCaseBinCapacity, caseItems);
+      binPack(caseCount, currentCaseBinCapacity, caseItems);
+      caseCount++;
     }
   }
 }
 
-void binPack(int binCapacity, Vector<Items> caseItems){
+void binPack(int caseNumber, int binCapacity, vector<int> caseItems){
   int ffBins  = firstFit(binCapacity, caseItems);
   int ffdBins = firstFitDecreasing(binCapacity, caseItems);
   int bfBins  = bestFit(binCapacity, caseItems);
 
-  cout << "Test Case " << caseCount
+  cout << "Test Case " << caseNumber
        << "| First Fit: " << ffdBins
        << "| First Fit Decreasing: " << ffdBins
        << "| Best Fit: " << bfBins << endl;
 }
 
 
-int firstFit(int binCapacity, Vector<Items> caseItems){
-  Vector<Bins> = bins;
-  bins.push_back(new Bin(binCapacity));
+int firstFit(int binCapacity, vector<int> caseItems){
+  vector<Bin> bins;
+
+  bins.push_back(newBin(binCapacity));
 
   for (int i = 0; i < caseItems.size(); i++){
     bool placed = false;
+    int item = caseItems.at(i);
     for (int j = 0; !placed && j < bins.size(); j++){
-      Item item = caseItems.at(i);
-      if (item.weight <= bins.at(j).availableCapacity){
-        bins.at(j).availableCapacity -= item.weight;
+      if (item <= bins.at(j).availableCapacity){
+        bins.at(j).availableCapacity -= item;
         bins.at(j).items.push_back(item);
         placed = true;
       }
     }
     if (!placed){
-      bins.push_back(new Bin(binCapacity));
+      bins.push_back(newBin(binCapacity));
       bins.back().items.push_back(item);
     }
   }
